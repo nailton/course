@@ -2,12 +2,14 @@ package br.com.nailton.course.config;
 
 import br.com.nailton.course.entities.Category;
 import br.com.nailton.course.entities.Order;
+import br.com.nailton.course.entities.Product;
 import br.com.nailton.course.entities.User;
 
 
 import br.com.nailton.course.entities.enums.OrderStatus;
 import br.com.nailton.course.repositories.CategoryRepository;
 import br.com.nailton.course.repositories.OrderRepository;
+import br.com.nailton.course.repositories.ProductRepository;
 import br.com.nailton.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -26,6 +28,8 @@ public class TestConfig implements CommandLineRunner {
     private OrderRepository orderRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -33,7 +37,14 @@ public class TestConfig implements CommandLineRunner {
         Category cat2 = new Category(null, "Books");
         Category cat3 = new Category(null, "Computers");
 
+        Product p1 = new Product(null, "The Lord of the Rings", "lorem ipusm", 90.5, "");
+        Product p2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus.", 2190.0, "");
+        Product p3 = new Product(null, "Macbook Pro", "Cirvus pavis colosso.", 1250.0, "");
+        Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac cursus.", 1200.0, "");
+        Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convalis.", 100.99, "");
+
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
         User u1 = new User(null, "Maria Brown", "maria@gmail.com", "98888888", "123456");
         User u2 = new User(null, "Alex Green", "alex@gmail.com", "97777777", "123456");
